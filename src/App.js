@@ -1,11 +1,14 @@
-import './App.css';
 
-function App() {
+import React from 'react';
+import './App.css';
+import Layout from './hoc/Layout/Layout';
+
+const App = () => {
   return (
-    <div className="App">
-      <h1>Hello</h1>
-    </div>
+    <Layout>
+
+    </Layout>
   );
-}
+};
 
 export default App;
