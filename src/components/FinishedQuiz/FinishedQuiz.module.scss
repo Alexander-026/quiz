@@ -1,0 +1,24 @@
+.FinishedQuiz {
+  padding: 20px;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  margin: 0 10px;
+  &__list {
+    list-style: none;
+    margin-bottom: 20px;
+  }
+  &__item {
+    margin-bottom: 10px;
+  }
+  i {
+    margin-left: 10px;
+  }
+
+  .success {
+    color: rgba(161, 240, 69, 1);
+  }
+  .error {
+    color: rgba(240, 87, 108, 1);
+  }
+}
