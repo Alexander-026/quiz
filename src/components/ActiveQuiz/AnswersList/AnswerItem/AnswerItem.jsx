@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import classes from "./AnswerItem.module.scss";
-import { QuizContext } from "../../../../containers/context/quizContext";
+import { QuizContext } from "../../../../context/quizContext";
 
 const AnswerItem = ({ state, answer }) => {
   const cls = [classes.AnswerItem];

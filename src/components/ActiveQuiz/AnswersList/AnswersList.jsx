@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { QuizContext } from "../../../containers/context/quizContext";
+import { QuizContext } from "../../../context/quizContext";
 import AnswerItem from "./AnswerItem/AnswerItem";
 import classes from "./AnswersList.module.scss";
 

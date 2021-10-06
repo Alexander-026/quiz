@@ -1,11 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import classes from "./Quiz.module.scss";
 import ActiveQuiz from "../../components/ActiveQuiz/ActiveQuiz";
-import { QuizContext } from "../../containers/context/quizContext";
+import { QuizContext } from "../../context/quizContext";
 import FinishedQuiz from "../../components/FinishedQuiz/FinishedQuiz";
 
 const Quiz = () => {
   const { state, onRetry } = useContext(QuizContext);
+
+  useEffect(() => {
+      console.log('okey')
+  },[])
   return (
     <div className={classes.Quiz}>
       <div className={classes.Quiz__wrapper}>
