@@ -1,15 +1,27 @@
 import React, { Fragment } from "react";
+import { NavLink } from "react-router-dom";
 import Backdrop from "../../UI/Backdrop/Backdrop";
 import classes from "./Drawer.module.scss";
 
-const links = [1, 2, 3];
+const links = [
+  { to: "/", label: "Quiz lists", exact: true },
+  { to: "/auth", label: "Authorization", exact: false },
+  { to: "/quiz-creator", label: "Create Quiz", exact: false },
+];
 
 const Drawer = ({ isOpen, onClose }) => {
   const renderLinks = () => {
     return links.map((link, index) => {
       return (
         <li key={index}>
-          <a>Link {link}</a>
+          <NavLink
+            onClick={() => onClose()}
+            to={link.to}
+            exact={link.exact}
+            activeClassName={classes.active}
+          >
+            {link.label}
+          </NavLink>
         </li>
       );
     });
@@ -26,7 +38,7 @@ const Drawer = ({ isOpen, onClose }) => {
       <nav className={cls.join(" ")}>
         <ul>{renderLinks()}</ul>
       </nav>
-      {isOpen ? <Backdrop onClick={onClose}/> : null}
+      {isOpen ? <Backdrop onClick={onClose} /> : null}
     </Fragment>
   );
 };

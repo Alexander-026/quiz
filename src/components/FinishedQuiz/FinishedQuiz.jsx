@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Button from "../UI/Button/Button";
 import classes from "./FinishedQuiz.module.scss";
 
@@ -31,8 +32,12 @@ const FinishedQuiz = ({ results, quiz, onRetry }) => {
       <p>
         Right {successCount} of {quiz.length}
       </p>
-      <Button onClick={() => onRetry()} type={'primary'}>Repeat</Button>
-      <Button  type={'success'}>test list</Button>
+      <Button onClick={() => onRetry()} type={"primary"}>
+        Repeat
+      </Button>
+      <Link to='/'>
+        <Button type={"success"}>test list</Button>
+      </Link>
     </div>
   );
 };

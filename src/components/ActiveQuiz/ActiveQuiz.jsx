@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 import classes from "./ActiveQuiz.module.scss";
 import AnswersList from "./AnswersList/AnswersList";
-import {QuizContext} from '../../containers/context/quizContext'
+import {QuizContext} from '../../context/quizContext'
 
 const ActiveQuiz = () => {
   const {state} = useContext(QuizContext)
