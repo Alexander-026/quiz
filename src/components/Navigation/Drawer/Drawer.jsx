@@ -5,7 +5,7 @@ import classes from "./Drawer.module.scss";
 
 const links = [
   { to: "/", label: "Quiz lists", exact: true },
-  { to: "/auth", label: "Authorization", exact: false },
+  { to: "/auth", label: "Auth", exact: false },
   { to: "/quiz-creator", label: "Create Quiz", exact: false },
 ];
 
