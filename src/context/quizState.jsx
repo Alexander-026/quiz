@@ -1,37 +1,19 @@
 import React, { useState } from "react";
+
 import { QuizContext } from "./quizContext";
 
 const QuizState = ({ children }) => {
+  
+ 
   const [state, setState] = useState({
     results: {},
     isFinished: false,
     activeQuestion: 0,
     answerState: null,
-    quiz: [
-      {
-        question: "What color is the sky ?",
-        rightAnswerId: 2,
-        id: 1,
-        answers: [
-          { text: "Black", id: 1 },
-          { text: "Blue", id: 2 },
-          { text: "Red", id: 3 },
-          { text: "Green", id: 4 },
-        ],
-      },
-      {
-        question: "What is your name ?",
-        rightAnswerId: 3,
-        id: 2,
-        answers: [
-          { text: "John", id: 1 },
-          { text: "Richard", id: 2 },
-          { text: "Alex", id: 3 },
-          { text: "Dolf", id: 4 },
-        ],
-      },
-    ],
+    quiz: [],
+    loading: true,
   });
+
 
   const onAnswerClickHandler = (answerId) => {
     const question = state.quiz[state.activeQuestion];
@@ -71,7 +53,6 @@ const QuizState = ({ children }) => {
     }
   };
 
-
   const onRetry = () => {
     setTimeout(() => {
       setState({
@@ -89,7 +70,7 @@ const QuizState = ({ children }) => {
   };
 
   return (
-    <QuizContext.Provider value={{ state, onAnswerClickHandler, onRetry }}>
+    <QuizContext.Provider value={{ state, setState, onAnswerClickHandler, onRetry }}>
       {children}
     </QuizContext.Provider>
   );
