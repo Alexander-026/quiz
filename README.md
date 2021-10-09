@@ -4,3 +4,5 @@
 4. React Hooks (useState, createContext, useContext, useEffect, useRef, useReducer) 
 5. Библиотека UI компонентов
 6. React-router-dom  (BrowserList, Switch, Route, NavLink, Link)
+7. axios
+8. 

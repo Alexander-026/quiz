@@ -8,6 +8,7 @@ import {
 } from "../../form/formFramework";
 import Input from "../../components/UI/Input/Input";
 import Select from "../../components/UI/Select/Select";
+import axios from "../../components/axios/axiosQuiz";
 
 const createOptionControl = (number) => {
   return createControl(
@@ -79,7 +80,7 @@ const QuizCreator = () => {
       ],
     };
 
-    quiz.push(questionItem)
+    quiz.push(questionItem);
 
     setState({
       ...state,
@@ -87,14 +88,26 @@ const QuizCreator = () => {
       isFormValid: false,
       rightAnswerId: 1,
       formControls: createFormControl(),
-    })
+    });
   };
 
-  const createQuizHandler = (e) => {
+  const createQuizHandler = async (e) => {
     e.preventDefault();
-    console.log(state.quiz)
 
-    //? SERVER
+    try {
+      await axios.post(
+        "/quizes.json",
+        state.quiz
+      );
+      setState({
+        quiz: [],
+        isFormValid: false,
+        rightAnswerId: 1,
+        formControls: createFormControl(),
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const changeHandler = (value, controlName) => {
@@ -155,6 +168,7 @@ const QuizCreator = () => {
           <Select
             label={"Order rigth answer"}
             rightAnswerId={state.rightAnswerId}
+            value={state.rightAnswerId}
             onChange={(e) => selectChangeHandler(e)}
             options={[
               { text: 1, value: 1 },

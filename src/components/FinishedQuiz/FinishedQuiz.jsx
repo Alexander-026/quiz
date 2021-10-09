@@ -36,7 +36,7 @@ const FinishedQuiz = ({ results, quiz, onRetry }) => {
         Repeat
       </Button>
       <Link to='/'>
-        <Button type={"success"}>test list</Button>
+        <Button type={"success"} >test list</Button>
       </Link>
     </div>
   );
