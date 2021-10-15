@@ -7,10 +7,10 @@ const AnswerItem = ({ state, answer }) => {
   if (state) {
     cls.push(classes[state]);
   }
-  const { onAnswerClickHandler } = useContext(QuizContext);
+  const { quizAnswerClick } = useContext(QuizContext);
   return (
     <li
-      onClick={() => onAnswerClickHandler(answer.id)}
+      onClick={() => quizAnswerClick(answer.id)}
       className={cls.join(' ')}
     >
       {answer.text}

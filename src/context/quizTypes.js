@@ -1,0 +1,17 @@
+// ? For Quiz Types
+export const FETCH_QUIZES_START = 'FETCH_QUIZES_START';
+export const FETCH_QUIZES_FINISH = 'FETCH_QUIZES_FINISH';
+export const FETCH_QUIZES_SUCCESS = 'FETCH_QUIZES_SUCCESS';
+export const FETCH_QUIZ_SUCCESS = 'FETCH_QUIZ_BY_ID_SUCCESS';
+
+export const FETCH_QUIZES_ERROR = 'FETCH_QUIZES_ERROR';
+
+
+export const RIGHT_ANSWER = 'RIGHT_ANSWER'
+export const WRONG_ANSWER = 'WRONG_ANSWER'
+export const QUIZ_FINISHED = 'QUIZ_FINISHED'
+export const NEXT_QUIZ = 'NEXT_QUIZ'
+export const ON_RETRY = 'ON_RETRY'
+// ? For Quiz Types
+
+

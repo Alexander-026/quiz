@@ -11,7 +11,7 @@ const validateEmail = (email) => {
   return re.test(String(email).toLowerCase());
 };
 
-const Auth = () => {
+const Auth = ({stateContainer, auth}) => {
   const [state, setState] = useState({
     isFormValid: false,
     formControls: {
@@ -41,40 +41,20 @@ const Auth = () => {
       },
     },
   });
-  const loginHandler = async () => {
-    const authData = {
-      email: state.formControls.email.value,
-      password: state.formControls.password.value,
-      returnSecureToken: true,
-    };
-
-    try {
-      const response = await axios.post(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCwP8LDhbBKy3Jy2DWZU2dsGcI1w4zlAzs",
-        authData
-      );
-      console.log(response.data);
-    } catch (e) {
-      console.log(e);
-    }
+  const loginHandler =  () => {
+    auth(
+      state.formControls.email.value,
+      state.formControls.password.value,
+      true,
+    )
   };
 
-  const registerHandler = async () => {
-    const authData = {
-      email: state.formControls.email.value,
-      password: state.formControls.password.value,
-      returnSecureToken: true,
-    };
-
-    try {
-      const response = await axios.post(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCwP8LDhbBKy3Jy2DWZU2dsGcI1w4zlAzs",
-        authData
-      );
-      console.log(response.data);
-    } catch (e) {
-      console.log(e);
-    }
+  const registerHandler =  () => {
+    auth(
+      state.formControls.email.value,
+      state.formControls.password.value,
+      false,
+    )
   };
 
   const validateControl = (value, validation) => {

@@ -1,10 +1,8 @@
-import React, { useContext } from "react";
-import { QuizContext } from "../../../context/quizContext";
+import React from "react";
 import AnswerItem from "./AnswerItem/AnswerItem";
 import classes from "./AnswersList.module.scss";
 
-const AnswersList = () => {
-  const { state } = useContext(QuizContext);
+const AnswersList = ({state}) => {
   const quiz = state.quiz[state.activeQuestion];
   return (
     <ul className={classes.AnswersList}>

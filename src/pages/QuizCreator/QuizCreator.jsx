@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useContext, useState } from "react";
 import classes from "./QuizCreator.module.scss";
 import Button from "../../components/UI/Button/Button";
 import {
@@ -8,7 +8,7 @@ import {
 } from "../../form/formFramework";
 import Input from "../../components/UI/Input/Input";
 import Select from "../../components/UI/Select/Select";
-import axios from "../../components/axios/axiosQuiz";
+import { QuizCreatorContext } from "./container/quizCreatorContext";
 
 const createOptionControl = (number) => {
   return createControl(
@@ -38,12 +38,15 @@ const createFormControl = () => {
 };
 
 const QuizCreator = () => {
+  const {stateCreator, createQuizQuestion, finishCreateQuiz} = useContext(QuizCreatorContext)
   const [state, setState] = useState({
-    quiz: [],
     isFormValid: false,
     rightAnswerId: 1,
     formControls: createFormControl(),
   });
+
+  
+
   const submitHandler = (e) => {
     e.preventDefault();
   };
@@ -51,14 +54,11 @@ const QuizCreator = () => {
   const addQuestionHandler = (e) => {
     e.preventDefault();
 
-    const quiz = state.quiz.concat();
-    const index = quiz.length + 1;
-
     const { question, option1, option2, option3, option4 } = state.formControls;
 
     const questionItem = {
       question: question.value,
-      id: index,
+      id: stateCreator.quiz.length + 1,
       rightAnswerId: state.rightAnswerId,
       answers: [
         {
@@ -80,34 +80,25 @@ const QuizCreator = () => {
       ],
     };
 
-    quiz.push(questionItem);
+    createQuizQuestion(questionItem);
 
     setState({
       ...state,
-      quiz,
       isFormValid: false,
       rightAnswerId: 1,
       formControls: createFormControl(),
     });
   };
 
-  const createQuizHandler = async (e) => {
+  const createQuizHandler = (e) => {
     e.preventDefault();
-
-    try {
-      await axios.post(
-        "/quizes.json",
-        state.quiz
-      );
-      setState({
-        quiz: [],
-        isFormValid: false,
-        rightAnswerId: 1,
-        formControls: createFormControl(),
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    finishCreateQuiz(stateCreator.quiz);
+    setState({
+      ...state,
+      isFormValid: false,
+      rightAnswerId: 1,
+      formControls: createFormControl(),
+    });
   };
 
   const changeHandler = (value, controlName) => {
@@ -187,7 +178,7 @@ const QuizCreator = () => {
           <Button
             type="success"
             onClick={(e) => createQuizHandler(e)}
-            disabled={state.quiz.length === 0}
+            disabled={stateCreator.quiz.length === 0}
           >
             Create test
           </Button>
