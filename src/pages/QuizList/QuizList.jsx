@@ -1,36 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import classes from "./QuizList.module.scss";
 import { NavLink } from "react-router-dom";
-import axios from "../../components/axios/axiosQuiz";
+import {QuizContext} from '../../context/quizContext';
+
 import Loader from "../../components/UI/Loader/Loader";
 
 const QuizLists = () => {
-  const [state, setState] = useState({
-    quizes: [],
-    loading: true,
-  });
+
+  const {state, fetchQuizes} = useContext(QuizContext)
+  
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await axios.get("/quizes.json");
-        let quizes = [];
-        Object.keys(response.data).forEach((key, index) => {
-          quizes.push({
-            id: key,
-            name: `Test N ${index + 1}`,
-          });
-        });
-        setState({
-          quizes,
-          loading: false,
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    fetchData();
+    fetchQuizes()
   }, []);
 
   const renderQuiz = () => {

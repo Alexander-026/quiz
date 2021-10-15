@@ -1,11 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import classes from "./ActiveQuiz.module.scss";
 import AnswersList from "./AnswersList/AnswersList";
-import { QuizContext } from "../../context/quizContext";
 
-const ActiveQuiz = () => {
-  const { state } = useContext(QuizContext);
-
+const ActiveQuiz = ({state}) => {
   const question = state.quiz[state.activeQuestion].question;
   const quizLength = state.quiz.length;
   const answerNumber = state.activeQuestion + 1;
@@ -21,7 +18,7 @@ const ActiveQuiz = () => {
           {answerNumber} of {quizLength}
         </small>
       </p>
-      <AnswersList />
+      <AnswersList state={state} />
     </div>
   );
 };
