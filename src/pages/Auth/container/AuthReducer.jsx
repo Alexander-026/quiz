@@ -5,10 +5,10 @@ const handlers = {
     ...state,
     token: payload,
   }),
-//   [AUTH_LOGOUT]: (state) => ({
-//     ...state,
-//     token: null,
-//   }),
+  [AUTH_LOGOUT]: (state) => ({
+    ...state,
+    token: null,
+  }),
   DEFAULT: (state) => state,
 };
 

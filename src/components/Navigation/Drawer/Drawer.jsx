@@ -1,15 +1,13 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../../../pages/Auth/container/AuthContext";
 import Backdrop from "../../UI/Backdrop/Backdrop";
 import classes from "./Drawer.module.scss";
 
-const links = [
-  { to: "/", label: "Quiz lists", exact: true },
-  { to: "/auth", label: "Auth", exact: false },
-  { to: "/quiz-creator", label: "Create Quiz", exact: false },
-];
+
 
 const Drawer = ({ isOpen, onClose }) => {
+  const { stateAuth } = useContext(AuthContext);
   const renderLinks = () => {
     return links.map((link, index) => {
       return (
@@ -31,6 +29,18 @@ const Drawer = ({ isOpen, onClose }) => {
 
   if (!isOpen) {
     cls.push(classes.close);
+  }
+
+  const links = [
+    { to: "/", label: "Quiz lists", exact: true }
+  ];
+
+
+  if(!!stateAuth.token) {
+    links.push( { to: "/quiz-creator", label: "Create Quiz", exact: false })
+    links.push( { to: "/logout", label: "Logout", exact: false })
+  }else {
+    links.push( { to: "/auth", label: "Auth", exact: false })
   }
 
   return (
