@@ -3,10 +3,13 @@ import ReactDOM from "react-dom";
 import "./index.scss";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
+import AuthContainer from "./pages/Auth/container/AuthContainer";
 
 const app = (
   <BrowserRouter>
-    <App />
+    <AuthContainer>
+      <App />
+    </AuthContainer>
   </BrowserRouter>
 );
 
