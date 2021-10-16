@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import classes from "./Auth.module.scss";
 import Button from "../../components/UI/Button/Button";
 import Input from "../../components/UI/Input/Input";
-
-import axios from "axios";
-
+import { AuthContext } from "./container/AuthContext";
 const validateEmail = (email) => {
   const re =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
 };
 
-const Auth = ({stateContainer, auth}) => {
+const Auth = () => {
+  const {auth} = useContext(AuthContext)
   const [state, setState] = useState({
     isFormValid: false,
     formControls: {

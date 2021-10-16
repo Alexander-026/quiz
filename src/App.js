@@ -6,21 +6,19 @@ import {Route, Switch } from "react-router-dom";
 import QuizLists from "./pages/QuizList/QuizList";
 import QuizState from "./context/quizState";
 import QuizCreatorContainer from "./pages/QuizCreator/container/QuizCreatorContainer";
-import AuthContainer from "./pages/Auth/container/AuthContainer";
+import Auth from "./pages/Auth/Auth";
 
 const App = () => {
   return (
     <Layout>
-     
-        <QuizState>
-            <Switch>
-              <Route path="/auth" component={AuthContainer} />
-              <Route path="/quiz-creator" component={QuizCreatorContainer} />
-              <Route path="/quiz/:id" component={Quiz} />
-              <Route path="/" component={QuizLists} />
-            </Switch>
-            </QuizState>
-     
+      <QuizState>
+        <Switch>
+          <Route path="/auth" component={Auth} />
+          <Route path="/quiz-creator" component={QuizCreatorContainer} />
+          <Route path="/quiz/:id" component={Quiz} />
+          <Route path="/" component={QuizLists} />
+        </Switch>
+      </QuizState>
     </Layout>
   );
 };
