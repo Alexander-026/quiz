@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import "./App.scss";
 import Quiz from "./pages/Quiz/Quiz";
 import Layout from "./hoc/Layout/Layout";
-import { Route, Switch, Redirect} from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import QuizLists from "./pages/QuizList/QuizList";
 import QuizState from "./context/quizState";
 import QuizCreatorContainer from "./pages/QuizCreator/container/QuizCreatorContainer";
@@ -13,11 +13,9 @@ import Logout from "./components/Logout/Logout";
 const App = () => {
   const { stateAuth, autoLogin } = useContext(AuthContext);
   useEffect(() => {
-    console.log('AutoLogout')
-    autoLogin()
-  }, [])
-
-  console.log(!!stateAuth.token)
+    console.log("AutoLogout");
+    autoLogin();
+  }, []);
 
   let routes = (
     <Switch>
@@ -42,11 +40,9 @@ const App = () => {
 
   return (
     <Layout>
-      <QuizState>
-          {routes}
-      </QuizState>
+      <QuizState>{routes}</QuizState>
     </Layout>
   );
 };
 
-export default App
+export default App;
